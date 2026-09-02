@@ -11,6 +11,7 @@ def auth_headers():
     password = "testpass123"
     client.post("/signup", json={"username": username, "password": password})
     response = client.post("/login", json={"username": username, "password": password})
+    print(response.status_code, response.json())
     token = response.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}
 

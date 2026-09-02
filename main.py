@@ -91,7 +91,7 @@ def login(user:Signup):
     row = db.get_user_by_username(user.username)
     if row is None or not pwd_context.verify(user.password, row["password_hash"]):
         raise HTTPException(status_code=401, detail="Invalid username or password")
-    return {"access token": create_token(user.username)}
+    return {"access_token": create_token(user.username)}
 
 
 @app.post("/ask")
