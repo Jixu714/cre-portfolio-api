@@ -126,9 +126,12 @@ def create_property(prop:PropertyCreate, current_user: str = Depends(get_current
     return row
 
 
-@app.get("/properties", response_model= list[Property])
-def get_all_properties(current_user: str = Depends(get_current_user)):
-    return db.get_properties()
+@app.get("/properties", response_model=list[Property])
+def get_all_properties(city: str | None = None, current_user: str = Depends(get_current_user)):
+    if city is None:
+        return db.get_properties()
+    return db.get_property_by_city(city)
+
 
 @app.get("/properties/{property_id}/leases")
 def get_lease(property_id: int, current_user: str = Depends(get_current_user)):

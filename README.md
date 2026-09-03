@@ -25,6 +25,7 @@ Every endpoint except signup and login requires authentication.
 
 **Properties**
 - `GET /properties` — list all
+- `GET /properties?city=Austin` — search by city
 - `GET /properties/{id}` — one property
 - `POST /properties` — create
 - `DELETE /properties/{id}` — delete (blocked if leases exist)

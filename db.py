@@ -151,3 +151,12 @@ def get_user_by_username(username):
     cur.close()
     release_connection(conn)
     return row
+
+def get_property_by_city(city):
+    conn = get_connection()
+    cur = conn.cursor(cursor_factory= RealDictCursor)
+    cur.execute("SELECT * FROM properties WHERE city ILIKE %s",(city,))
+    row = cur.fetchall()
+    cur.close()
+    release_connection(conn)
+    return row
