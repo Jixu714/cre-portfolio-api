@@ -3,6 +3,7 @@
 A REST API for commercial real estate portfolio management. Property owners can store buildings and leases, then query occupancy, revenue, and upcoming lease expirations — including through a natural-language endpoint backed by an LLM.
 
 **Live:** https://cre-portfolio-api-production.up.railway.app/docs
+**Repo:** github.com/Jixu714/cre-portfolio-api
 
 ## Stack
 
