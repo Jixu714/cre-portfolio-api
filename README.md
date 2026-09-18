@@ -1,4 +1,4 @@
-# CRE Portfolio API
+# CRE Portfolio API version b
 
 A REST API for commercial real estate portfolio management. Property owners can store buildings and leases, then query occupancy, revenue, and upcoming lease expirations — including through a natural-language endpoint backed by an LLM.
 
