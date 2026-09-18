@@ -96,4 +96,3 @@ pytest
 ```
 
 Runs automatically on every push via GitHub Actions.
-yuppp
