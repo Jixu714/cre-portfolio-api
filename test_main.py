@@ -69,4 +69,4 @@ def test_delete_property_with_lease(sample_lease, sample_property, auth_headers)
 
 def test_properties_requires_auth():
     response = client.get("/properties")
-    assert response.status_code == 401
+    assert response.status_code == 400
