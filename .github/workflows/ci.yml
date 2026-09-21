@@ -44,6 +44,3 @@ jobs:
                     DATABASE_URL: postgresql://postgres:testpass@localhost:5432/postgres
                     SECRET_KEY: test-secret-key-for-ci
                     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-            
-
-            
