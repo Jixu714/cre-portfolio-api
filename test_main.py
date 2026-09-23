@@ -74,6 +74,7 @@ def test_properties_requires_auth():
 def test_duplicate_username():
     username = f"test-{uuid.uuid4()}"
     password = "testpass123"
-    response = client.post(f"/signup", json= {"username": username, "password": password})
-    response = client.post(f"/signup", json= {"username": username, "password": password})
-    assert response.status_code == 409
+    first = client.post("/signup", json={"username": username, "password": password})
+    second = client.post("/signup", json={"username": username, "password": password})
+    assert first.status_code == 200
+    assert second.status_code == 409
