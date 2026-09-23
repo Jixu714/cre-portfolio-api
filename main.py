@@ -83,7 +83,11 @@ def get_current_user(auth: HTTPAuthorizationCredentials = Depends(security)):
 @app.post("/signup")
 def signup(user: Signup):
     hashed = pwd_context.hash(user.password)
-    return db.create_user(user.username, hashed)
+    try:
+        row = db.create_user(user.username, hashed)
+    except psycopg2.errors.UniqueViolation:
+        raise HTTPException(status_code= 409, detail="Username taken")
+    return row
 
 
 @app.post("/login")
