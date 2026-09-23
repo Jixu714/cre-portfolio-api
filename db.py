@@ -133,15 +133,20 @@ def occupancy():
 
 def create_user(username, password_hash):
     conn = get_connection()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
-    cur.execute(
-        "INSERT INTO users(username, password_hash) VALUES (%s, %s) RETURNING id, username",
-        (username, password_hash))
-    row = cur.fetchone()
-    conn.commit()
-    cur.close()
-    release_connection(conn)
-    return row
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute(
+            "INSERT INTO users(username, password_hash) VALUES (%s, %s) RETURNING id, username",
+            (username, password_hash))
+        row = cur.fetchone()
+        conn.commit()
+        cur.close()
+        return row
+    except psycopg2.Error:
+        conn.rollback()
+        raise
+    finally:
+        release_connection(conn)
 
 def get_user_by_username(username):
     conn = get_connection()
