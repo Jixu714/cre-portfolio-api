@@ -70,3 +70,11 @@ def test_delete_property_with_lease(sample_lease, sample_property, auth_headers)
 def test_properties_requires_auth():
     response = client.get("/properties")
     assert response.status_code == 401
+
+def test_duplicate_username():
+    username = f"test-{uuid.uuid4()}"
+    password = "testpass123"
+    first = client.post("/signup", json={"username": username, "password": password})
+    second = client.post("/signup", json={"username": username, "password": password})
+    assert first.status_code == 200
+    assert second.status_code == 409
